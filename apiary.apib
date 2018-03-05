@@ -1,39 +1,48 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://whatever.com/
 
 # photoswhere
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Photo where allows search of photos.  These photos contain information about where the
+Photo 
 
-## Questions Collection [/questions]
+## Pictures Collection [/pictures]
 
-### List All Questions [GET]
+### List All Pictures [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
+                "category": "Favorite pictures",
                 "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "pictures": [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                        "name": "Grand Canyon Secrets",
+                        "lat": 00,
+                        "lng": 00,
+                        "stars": 3
+                    },  {
+                       "name": "Mystic Trails",
+                       "lat": 00,
+                       "lng": 00,
+                       "stars": 5
+                    },  {
+                      "name": "No Long Stories",
+                      "lat": 00,
+                      "lng": 00,
+                      "stars": 2
+                    },  {
+                      "name": "Dragons Layer",
+                      "lat": 00,
+                      "lng": 00,
+                      "stars": 1
                     }
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create a New Photo [POST]
 
 You may create your own question using this action. It takes a JSON
 object containing a question and a collection of answers in the
@@ -42,39 +51,39 @@ form of choices.
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "category": "Favorite pictures",
+             {
+                "name": "Jellystone Bears",
+                "lat": 00,
+                "lng": 00,
+                "stars": 5
+            }
         }
 
 + Response 201 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
     + Body
 
+        {
+            "added": "Jellystone Bears"
+        }
+            
++ Request (application/json)
+
+       {
+           "category": "Favorite pictures bad cats",
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+               "name": "Jellystone Bears",
+               "lat": 00,
+               "lng": 00,
+               "stars": 5
+           }
+       }
+        
++ Response 409 (application/problem+json)
+             
+     {
+         "type": "some error",
+         "title": "There is an update conflict",
+         "detail": "The resource could not be updated, because it is based on an older version that was updated meanwhile. Get the new version, merge your data, and retry the update."
+     }
