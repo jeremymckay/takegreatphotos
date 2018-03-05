@@ -64,26 +64,46 @@ form of choices.
 
     + Body
 
-        {
-            "added": "Jellystone Bears"
-        }
+            {
+                "added": "Jellystone Bears"
+            }
             
 + Request (application/json)
 
-       {
-           "category": "Favorite pictures bad cats",
             {
-               "name": "Jellystone Bears",
-               "lat": 00,
-               "lng": 00,
-               "stars": 5
-           }
-       }
+                "category": "Favorite pictures bad category",
+                {
+                    "name": "Jellystone Bears",
+                    "lat": 00,
+                    "lng": 00,
+                    "stars": 5
+                }
+            }
         
 + Response 409 (application/problem+json)
              
-     {
-         "type": "some error",
-         "title": "There is an update conflict",
-         "detail": "The resource could not be updated, because it is based on an older version that was updated meanwhile. Get the new version, merge your data, and retry the update."
-     }
+            {
+                "type": "some error",
+                "title": "There is an update conflict",
+                "detail": "The resource could not be updated, because it is based on an older version that was updated meanwhile. Get the new version, merge your data, and retry the update."
+            }
+            
+### Update Photo Information [PUT]
+
++ Request
+
+        { 
+            "category": "Favorite picture",
+            {
+               "name": "Mystic Trails",
+               "lat": 00, 
+               "lng": 00,
+                "stars": 5
+            }
+        }
+        
++ Response 201
+
+            {
+                "updated": "Mystic Trails"Put 
+            }
