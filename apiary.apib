@@ -4,7 +4,7 @@ HOST: http://whatever.com/
 # photoswhere
 
 Photo where allows search of photos.  These photos contain information about where the
-Photo 
+Photo was shot and any IEFT information
 
 ## Pictures Collection [/pictures]
 
@@ -52,6 +52,7 @@ form of choices.
 
         {
             "category": "Favorite pictures",
+            "picture":
              {
                 "name": "Jellystone Bears",
                 "lat": 00,
@@ -67,11 +68,13 @@ form of choices.
             {
                 "added": "Jellystone Bears"
             }
+        
             
 + Request (application/json)
 
             {
                 "category": "Favorite pictures bad category",
+                "picture":
                 {
                     "name": "Jellystone Bears",
                     "lat": 00,
@@ -88,12 +91,14 @@ form of choices.
                 "detail": "The resource could not be updated, because it is based on an older version that was updated meanwhile. Get the new version, merge your data, and retry the update."
             }
             
+        
 ### Update Photo Information [PUT]
 
 + Request
 
         { 
             "category": "Favorite picture",
+             "picture":
             {
                "name": "Mystic Trails",
                "lat": 00, 
@@ -107,3 +112,7 @@ form of choices.
             {
                 "updated": "Mystic Trails"Put 
             }
+            
+### Delete Photo Information [DELETE]
+
++ Response 204
